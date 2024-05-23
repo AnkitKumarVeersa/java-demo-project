@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "tokenSecret",
+  "type": "java.lang.String",
+  "description": "Has authentication token"
+}]}
