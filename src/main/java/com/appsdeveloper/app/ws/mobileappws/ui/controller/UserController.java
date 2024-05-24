@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.appsdeveloper.app.ws.exceptions.UserServiceException;
 import com.appsdeveloper.app.ws.mobileappws.ui.model.request.UserDetailsRequestModel;
 import com.appsdeveloper.app.ws.mobileappws.ui.model.response.ErrorMessages;
+import com.appsdeveloper.app.ws.mobileappws.ui.model.response.OperationStatusModel;
 import com.appsdeveloper.app.ws.mobileappws.ui.model.response.UserRest;
 import com.appsdeveloper.app.ws.service.UserService;
 import com.appsdeveloper.app.ws.shared.dto.UserDto;
@@ -58,9 +59,13 @@ public class UserController {
         return returnValue;
     }
 
-    @DeleteMapping
-    public String deleteUser()
+    @DeleteMapping(path="/{id}")
+    public OperationStatusModel deleteUser(@PathVariable String id)
     {
-        return "Inside delete user";
+        OperationStatusModel returnValue = new OperationStatusModel();
+        returnValue.setOperationName("DELETE");
+        userService.deleteUser(id);
+        returnValue.setOperationResult("success");
+        return returnValue;
     }
 }
