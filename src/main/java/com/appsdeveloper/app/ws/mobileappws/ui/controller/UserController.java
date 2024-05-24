@@ -46,10 +46,16 @@ public class UserController {
         return returnValue;
     }
 
-    @PutMapping
-    public String UpdateUser()
+    @PutMapping(path="/{id}")
+    public UserRest UpdateUser(@RequestBody UserDetailsRequestModel userDetails, @PathVariable String id)
     {
-        return "Inside update user";
+        UserRest returnValue = new UserRest();
+        if (userDetails.getFirstName() == null || userDetails.getFirstName().isEmpty() ) throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(userDetails, userDto);
+        UserDto updatedUser = userService.updateUser(id, userDto);
+        BeanUtils.copyProperties(updatedUser, returnValue);
+        return returnValue;
     }
 
     @DeleteMapping

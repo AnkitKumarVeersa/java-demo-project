@@ -2,7 +2,8 @@ package com.appsdeveloper.app.ws.mobileappws.ui.model.response;
 
 public enum ErrorMessages {
     MISSING_REQUIRED_FIELD("Missing required field. Please send all the required fields."),
-    RECORD_ALREADY_EXISTS("Record already exists");
+    RECORD_ALREADY_EXISTS("Record already exists"),
+    NO_RECORD_FOUND("Record not found");
 
     private String errorMessage;
 
